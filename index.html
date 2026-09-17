@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conecta - Saúde emocional</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: #fffdf8;
+            color: #202020;
+        }
+
+        header {
+            width: 100%;
+            padding: 20px 7%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: white;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 25px;
+            font-weight: bold;
+        }
+
+        .logo span {
+            color: #f4bd18;
+            font-size: 38px;
+        }
+
+        nav {
+            display: flex;
+            gap: 28px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 600;
+        }
+
+        nav a:hover {
+            color: #e6a900;
+        }
+
+        .button {
+            background: #f5bd16;
+            color: #222;
+            padding: 14px 22px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: bold;
+            display: inline-block;
+            border: none;
+            cursor: pointer;
+        }
+
+        section {
+            padding: 80px 8%;
+        }
+
+        .hero {
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 50px;
+            background: #fff9df;
+        }
+
+        .hero-text {
+            max-width: 600px;
+        }
+
+        .hero h1 {
+            font-size: 55px;
+            line-height: 1.05;
+            margin-bottom: 25px;
+        }
+
+        .hero h1 span {
+            color: #eab414;
+        }
+
+        .hero p {
+            font-size: 20px;
+            line-height: 1.6;
+            color: #555;
+            margin-bottom: 30px;
+        }
+
+        .hero-image {
+            width: 380px;
+            height: 330px;
+            background: #f5e9b5;
+            border-radius: 45% 55% 50% 40%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 100px;
+        }
+
+        .title {
+            text-align: center;
+            margin-bottom: 45px;
+        }
+
+        .title h2 {
+            font-size: 38px;
+            margin-bottom: 12px;
+        }
+
+        .title p {
+            color: #666;
+            font-size: 18px;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .card {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 4px 18px rgba(0,0,0,0.07);
+            border: 1px solid #eee;
+        }
+
+        .card .icon {
+            font-size: 38px;
+            margin-bottom: 15px;
+        }
+
+        .card h3 {
+            margin-bottom: 12px;
+            font-size: 21px;
+        }
+
+        .card p {
+            color: #666;
+            line-height: 1.5;
+        }
+
+        .anxiety {
+            background: white;
+        }
+
+        .anxiety-box {
+            max-width: 1000px;
+            margin: auto;
+            padding: 45px;
+            border-radius: 25px;
+            background: #fffdf5;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+        }
+
+        .anxiety-header {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+            margin-bottom: 35px;
+        }
+
+        .anxiety-icon {
+            width: 100px;
+            height: 100px;
+            border-radius: 30px;
+            background: #f9efc9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 55px;
+        }
+
+        .anxiety-header h2 {
+            font-size: 40px;
+        }
+
+        .anxiety-header p {
+            color: #666;
+            margin-top: 8px;
+        }
+
+        .anxiety-box h3 {
+            margin: 25px 0 12px;
+            font-size: 23px;
+        }
+
+        .anxiety-box p {
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .signs {
+            list-style: none;
+            margin-top: 15px;
+        }
+
+        .signs li {
+            margin: 12px 0;
+            color: #555;
+        }
+
+        .signs li::before {
+            content: "✓";
+            background: #f4bd18;
+            color: white;
+            border-radius: 50%;
+            padding: 4px 7px;
+            margin-right: 10px;
+            font-weight: bold;
+        }
+
+        .remember {
+            margin-top: 30px;
+            background: #fff4cf;
+            padding: 20px;
+            border-radius: 15px;
+        }
+
+        .help {
+            background: #fff9df;
+        }
+
+        .help-list {
+            max-width: 900px;
+            margin: auto;
+        }
+
+        .help-item {
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+            background: white;
+            margin-bottom: 18px;
+            padding: 22px;
+            border-radius: 18px;
+        }
+
+        .number {
+            min-width: 45px;
+            height: 45px;
+            background: #f5bd16;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+        }
+
+        .help-item h3 {
+            margin-bottom: 7px;
+        }
+
+        .help-item p {
+            color: #666;
+        }
+
+        .testimonials {
+            background: white;
+        }
+
+        .testimonial-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+            max-width: 1000px;
+            margin: auto;
+        }
+
+        .testimonial {
+            border: 1px solid #ddd;
+            padding: 30px;
+            border-radius: 18px;
+            background: #fff;
+        }
+
+        .quote {
+            color: #f4bd18;
+            font-size: 45px;
+            font-weight: bold;
+        }
+
+        .testimonial p {
+            color: #555;
+            line-height: 1.6;
+            margin: 10px 0 20px;
+        }
+
+        .share {
+            max-width: 1000px;
+            margin: 40px auto 0;
+            background: #fff4cf;
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+        }
+
+        .share h3 {
+            margin-bottom: 10px;
+        }
+
+        .contact {
+            text-align: center;
+            background: #fff9df;
+        }
+
+        .contact p {
+            color: #555;
+            margin: 15px auto 25px;
+            max-width: 600px;
+            line-height: 1.6;
+        }
+
+        footer {
+            background: #202020;
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        footer span {
+            color: #f5bd16;
+        }
+
+        @media (max-width: 800px) {
+            nav {
+                display: none;
+            }
+
+            .hero {
+                flex-direction: column;
+                text-align: center;
+                padding-top: 60px;
+            }
+
+            .hero h1 {
+                font-size: 42px;
+            }
+
+            .hero-image {
+                width: 280px;
+                height: 250px;
+            }
+
+            .cards,
+            .testimonial-container {
+                grid-template-columns: 1fr;
+            }
+
+            .anxiety-header {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            section {
+                padding: 60px 6%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">
+        <span>♥</span> Conecta
+    </div>
+
+    <nav>
+        <a href="#inicio">Início</a>
+        <a href="#sobre">Sobre</a>
+        <a href="#conteudos">Conteúdos</a>
+        <a href="#ajuda">Ajuda</a>
+        <a href="#contato">Contato</a>
+    </nav>
+
+    <a href="#contato" class="button">Falar agora</a>
+</header>
+
+
+<section class="hero" id="inicio">
+    <div class="hero-text">
+        <h1>Você não está<br><span>sozinho.</span></h1>
+
+        <p>
+            Informação, acolhimento e conexão para cuidar
+            da sua saúde emocional.
+        </p>
+
+        <a href="#conteudos" class="button">Explorar conteúdos</a>
+    </div>
+
+    <div class="hero-image">
+        💛
+    </div>
+</section>
+
+
+<section id="sobre">
+    <div class="title">
+        <h2>Sobre o Conecta</h2>
+        <p>Um espaço para informação, acolhimento e apoio.</p>
+    </div>
+
+    <div class="cards">
+        <div class="card">
+            <div class="icon">💛</div>
+            <h3>Acolhimento</h3>
+            <p>
+                Um espaço para lembrar que seus sentimentos
+                importam e que você não precisa enfrentar tudo sozinho.
+            </p>
+        </div>
+
+        <div class="card">
+            <div class="icon">🧠</div>
+            <h3>Informação</h3>
+            <p>
+                Conteúdos simples para ajudar a compreender
+                questões relacionadas à saúde emocional.
+            </p>
+        </div>
+
+        <div class="card">
+            <div class="icon">🤝</div>
+            <h3>Conexão</h3>
+            <p>
+                Incentivamos a busca por apoio e o diálogo
+                com pessoas de confiança.
+            </p>
+        </div>
+    </div>
+</section>
+
+
+<section class="anxiety" id="conteudos">
+    <div class="anxiety-box">
+
+        <div class="anxiety-header">
+            <div class="anxiety-icon">🌀</div>
+
+            <div>
+                <h2>Ansiedade</h2>
+                <p>Você não é o que sente. Você é muito mais.</p>
+            </div>
+        </div>
+
+        <h3>O que é?</h3>
+
+        <p>
+            A ansiedade é uma resposta natural do nosso corpo
+            a situações de estresse. Porém, quando se torna
+            frequente e intensa, pode afetar a qualidade de vida.
+        </p>
+
+        <h3>Principais sinais:</h3>
+
+        <ul class="signs">
+            <li>Preocupação constante</li>
+            <li>Dificuldade para relaxar</li>
+            <li>Sono irregular</li>
+            <li>Coração acelerado</li>
+            <li>Dificuldade de concentração</li>
+        </ul>
+
+        <div class="remember">
+            <strong>💡 Lembre-se:</strong>
+            <p>
+                Sentir ansiedade não é fraqueza.
+                Buscar ajuda é um ato de coragem.
+            </p>
+        </div>
+
+    </div>
+</section>
+
+
+<section class="help" id="ajuda">
+
+    <div class="title">
+        <h2>Como ajudar alguém?</h2>
+        <p>Pequenas atitudes podem fazer uma grande diferença.</p>
+    </div>
+
+    <div class="help-list">
+
+        <div class="help-item">
+            <div class="number">1</div>
+            <div>
+                <h3>Ouça sem julgar</h3>
+                <p>Dê atenção e mostre que você se importa.</p>
+            </div>
+        </div>
+
+        <div class="help-item">
+            <div class="number">2</div>
+            <div>
+                <h3>Demonstre apoio</h3>
+                <p>Esteja presente e ofereça sua ajuda.</p>
+            </div>
+        </div>
+
+        <div class="help-item">
+            <div class="number">3</div>
+            <div>
+                <h3>Não minimize o que a pessoa sente</h3>
+                <p>Evite frases como "é frescura" ou "vai passar".</p>
+            </div>
+        </div>
+
+        <div class="help-item">
+            <div class="number">4</div>
+            <div>
+                <h3>Incentive a busca por ajuda</h3>
+                <p>
+                    Converse sobre a importância de procurar
+                    um profissional.
+                </p>
+            </div>
+        </div>
+
+        <div class="help-item">
+            <div class="number">5</div>
+            <div>
+                <h3>Procure um adulto ou responsável</h3>
+                <p>
+                    Se perceber sinais de risco, procure um professor,
+                    familiar ou outro adulto de confiança.
+                </p>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+
+<section class="testimonials">
+
+    <div class="title">
+        <h2>Histórias que inspiram</h2>
+        <p>Cada história é única. Compartilhar também é uma forma de ajudar.</p>
+    </div>
+
+    <div class="testimonial-container">
+
+        <div class="testimonial">
+            <div class="quote">“</div>
+
+            <p>
+                Eu achava que estava sozinho, mas quando conversei
+                com um amigo, tudo começou a mudar.
+                Hoje me sinto mais forte.
+            </p>
+
+            <strong>— Estudante, 17 anos</strong>
+        </div>
+
+        <div class="testimonial">
+            <div class="quote">“</div>
+
+            <p>
+                Buscar ajuda foi a melhor decisão que tomei.
+                Percebi que não precisava enfrentar isso sozinho.
+            </p>
+
+            <strong>— Estudante, 16 anos</strong>
+        </div>
+
+    </div>
+
+    <div class="share">
+        <h3>Sua história também importa.</h3>
+
+        <p>
+            Se quiser, compartilhe sua experiência de forma anônima.
+        </p>
+
+        <br>
+
+        <a href="#contato" class="button">Compartilhar minha história</a>
+    </div>
+
+</section>
+
+
+<section class="contact" id="contato">
+
+    <div class="title">
+        <h2>Fale com a gente</h2>
+
+        <p>
+            Se você precisa conversar ou quer saber mais,
+            procure uma pessoa de confiança e não tenha medo
+            de pedir ajuda.
+        </p>
+
+        <a href="#inicio" class="button">Voltar ao início</a>
+    </div>
+
+</section>
+
+
+<footer>
+    <p>© 2026 <span>Conecta</span> — Informação e acolhimento.</p>
+</footer>
+
+</body>
+</html>
