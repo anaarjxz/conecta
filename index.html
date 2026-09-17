@@ -57,6 +57,7 @@
             text-decoration: none;
             color: #333;
             font-weight: 600;
+            transition: color 0.3s ease;
         }
 
         nav a:hover {
@@ -73,7 +74,95 @@
             display: inline-block;
             border: none;
             cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
         }
+
+        .button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(245, 189, 22, 0.4);
+        }
+
+        /* --- Estilos da Nova Seção de Respiração --- */
+        .breathe-section {
+            background: #fdfaf0;
+            text-align: center;
+        }
+
+        .breathe-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin-top: 40px;
+            min-height: 400px;
+        }
+
+        .circle-container {
+            position: relative;
+            width: 250px;
+            height: 250px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+
+        .breathe-circle {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, #f5bd16 0%, #ffde7a 100%);
+            border-radius: 50%;
+            transition: transform 0.1s linear; /* Controlado via JS para sincronia perfeita */
+            box-shadow: 0 0 30px rgba(245, 189, 22, 0.3);
+        }
+
+        .circle-outline {
+            position: absolute;
+            width: 250px;
+            height: 250px;
+            border: 2px dashed #e4d5a7;
+            border-radius: 50%;
+            opacity: 0.5;
+        }
+
+        .breathe-text {
+            position: relative;
+            z-index: 2;
+            font-size: 24px;
+            font-weight: bold;
+            color: #555;
+            text-shadow: 1px 1px 2px rgba(255,255,255,0.8);
+        }
+
+        .breathe-controls button {
+            margin: 0 10px;
+            padding: 12px 25px;
+            font-size: 16px;
+            background: white;
+            border: 2px solid #f5bd16;
+            color: #202020;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .breathe-controls button:hover {
+            background: #f5bd16;
+            color: white;
+        }
+
+        #stop-btn {
+            border-color: #ddd;
+            color: #777;
+            display: none;
+        }
+        #stop-btn:hover {
+            background: #eee;
+            color: #333;
+        }
+        /* ------------------------------------------- */
 
         section {
             padding: 80px 8%;
@@ -382,7 +471,6 @@
         }
     </style>
 </head>
-
 <body>
 
 <header>
@@ -394,13 +482,13 @@
         <a href="#inicio">Início</a>
         <a href="#sobre">Sobre</a>
         <a href="#conteudos">Conteúdos</a>
+        <a href="#exercicios">Exercícios</a>
         <a href="#ajuda">Ajuda</a>
         <a href="#contato">Contato</a>
     </nav>
 
     <a href="#contato" class="button">Falar agora</a>
 </header>
-
 
 <section class="hero" id="inicio">
     <div class="hero-text">
@@ -418,7 +506,6 @@
         💛
     </div>
 </section>
-
 
 <section id="sobre">
     <div class="title">
@@ -456,10 +543,8 @@
     </div>
 </section>
 
-
 <section class="anxiety" id="conteudos">
     <div class="anxiety-box">
-
         <div class="anxiety-header">
             <div class="anxiety-icon">🌀</div>
 
@@ -494,20 +579,38 @@
                 Buscar ajuda é um ato de coragem.
             </p>
         </div>
-
     </div>
 </section>
 
+<!-- NOVA SEÇÃO INTERATIVA -->
+<section class="breathe-section" id="exercicios">
+    <div class="title">
+        <h2>Pausa para Respirar</h2>
+        <p>Acompanhe o círculo para relaxar o corpo e a mente.</p>
+    </div>
+
+    <div class="breathe-container">
+        <div class="circle-container">
+            <div class="circle-outline"></div>
+            <div class="breathe-circle" id="circle"></div>
+            <div class="breathe-text" id="breathe-text">Pronto?</div>
+        </div>
+
+        <div class="breathe-controls">
+            <button id="start-btn" onclick="startBreathing()">Começar Relaxamento</button>
+            <button id="stop-btn" onclick="stopBreathing()">Parar</button>
+        </div>
+    </div>
+</section>
+<!-- FIM DA NOVA SEÇÃO -->
 
 <section class="help" id="ajuda">
-
     <div class="title">
         <h2>Como ajudar alguém?</h2>
         <p>Pequenas atitudes podem fazer uma grande diferença.</p>
     </div>
 
     <div class="help-list">
-
         <div class="help-item">
             <div class="number">1</div>
             <div>
@@ -553,20 +656,16 @@
                 </p>
             </div>
         </div>
-
     </div>
 </section>
 
-
 <section class="testimonials">
-
     <div class="title">
         <h2>Histórias que inspiram</h2>
         <p>Cada história é única. Compartilhar também é uma forma de ajudar.</p>
     </div>
 
     <div class="testimonial-container">
-
         <div class="testimonial">
             <div class="quote">“</div>
 
@@ -589,44 +688,94 @@
 
             <strong>— Estudante, 16 anos</strong>
         </div>
-
     </div>
 
     <div class="share">
         <h3>Sua história também importa.</h3>
-
         <p>
             Se quiser, compartilhe sua experiência de forma anônima.
         </p>
-
         <br>
-
         <a href="#contato" class="button">Compartilhar minha história</a>
     </div>
-
 </section>
 
-
 <section class="contact" id="contato">
-
     <div class="title">
         <h2>Fale com a gente</h2>
-
         <p>
             Se você precisa conversar ou quer saber mais,
             procure uma pessoa de confiança e não tenha medo
             de pedir ajuda.
         </p>
-
         <a href="#inicio" class="button">Voltar ao início</a>
     </div>
-
 </section>
-
 
 <footer>
     <p>© 2026 <span>Conecta</span> — Informação e acolhimento.</p>
 </footer>
+
+<!-- SCRIPT PARA A ANIMAÇÃO FUNCIONAR -->
+<script>
+    const circle = document.getElementById('circle');
+    const text = document.getElementById('breathe-text');
+    const startBtn = document.getElementById('start-btn');
+    const stopBtn = document.getElementById('stop-btn');
+    
+    let isBreathing = false;
+    let breatheTimeout1, breatheTimeout2, breatheTimeout3;
+
+    // Tempos em milissegundos
+    const totalTime = 7500;
+    const breatheTime = 3000; // Inspire (crescendo)
+    const holdTime = 1500;    // Segure
+    // Expire é o restante do tempo (3000ms reduzindo)
+
+    function breathAnimation() {
+        if (!isBreathing) return;
+
+        text.innerText = 'Inspire...';
+        circle.style.transition = `transform ${breatheTime}ms ease-in-out`;
+        circle.style.transform = 'scale(2.5)'; // Círculo cresce
+
+        breatheTimeout1 = setTimeout(() => {
+            if (!isBreathing) return;
+            text.innerText = 'Segure';
+            
+            breatheTimeout2 = setTimeout(() => {
+                if (!isBreathing) return;
+                text.innerText = 'Expire...';
+                circle.style.transition = `transform ${breatheTime}ms ease-in-out`;
+                circle.style.transform = 'scale(1)'; // Círculo diminui
+                
+            }, holdTime);
+        }, breatheTime);
+    }
+
+    function startBreathing() {
+        isBreathing = true;
+        startBtn.style.display = 'none';
+        stopBtn.style.display = 'inline-block';
+        
+        breathAnimation(); // Roda a primeira vez
+        breatheTimeout3 = setInterval(breathAnimation, totalTime); // Repete o ciclo
+    }
+
+    function stopBreathing() {
+        isBreathing = false;
+        clearTimeout(breatheTimeout1);
+        clearTimeout(breatheTimeout2);
+        clearInterval(breatheTimeout3);
+        
+        circle.style.transition = 'transform 0.5s ease';
+        circle.style.transform = 'scale(1)';
+        text.innerText = 'Pronto?';
+        
+        startBtn.style.display = 'inline-block';
+        stopBtn.style.display = 'none';
+    }
+</script>
 
 </body>
 </html>
